@@ -1,0 +1,49 @@
+library(raw)   # load the datasets
+library(dplyr)
+library(janitor)
+library(ggplot2)
+
+data("ppauto")
+
+# Clean the raw data
+claims <- ppauto |> 
+  janitor::clean_names() |> 
+  dplyr::mutate(
+    loss_ratio = cumulative_paid / direct_ep
+  ) |> 
+  dplyr::select(
+    group_code, 
+    company, 
+    accident_year, 
+    development_year, 
+    development_lag = lag, 
+    premium = direct_ep, 
+    cumulative_loss_paid = cumulative_paid, 
+    loss_ratio
+  )
+
+
+# Plot the lagged loss ratios for 4 carriers
+claims |> 
+  dplyr::filter(group_code %in% c(43,353,388,620)) |> 
+  ggplot2::ggplot(
+    ggplot2::aes(
+      x = development_lag, 
+      y = loss_ratio, 
+      color = as.character(accident_year)
+    )
+  ) + 
+  ggplot2::geom_line(size = 0.3) +
+  ggplot2::expand_limits(y = c(0, 1)) + 
+  ggplot2::facet_wrap(~ group_code) + 
+  ggplot2::labs(
+    x = "Time Since Accident Claim (in Years)", 
+    y = "Loss Ratio\n(Cumulative Claim Payments / Annual Premium from Accident Year)", 
+    color = "Cohort Year", 
+    title = "Snapshot of Loss Curves for 10 Years of Loss Development", 
+    subtitle = "Private Passenger Auto Insurance for Single Insurance Company"
+  )
+
+
+
+
