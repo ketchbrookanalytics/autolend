@@ -1,3 +1,9 @@
+
+
+
+## Adapted from:
+## https://mc-stan.org/users/documentation/case-studies/losscurves_casestudy.html
+
 library(raw)   # load the datasets
 library(dplyr)
 library(janitor)
@@ -21,6 +27,11 @@ claims <- ppauto |>
     cumulative_loss_paid = cumulative_paid, 
     loss_ratio
   )
+
+Note: 'loss ratio' is the cumulative total dollars paid out over time (i.e.,
+over multiple years) against accident claims from a given 'base' year (year
+the accident occurred), divided by the total amount of premiums collected in
+the base year
 
 
 # Plot the lagged loss ratios for 4 carriers
