@@ -69,7 +69,8 @@ forward-looking time horizon* make it impossible to do so.
 When using “traditional” modeling methods, we are often limited to using
 independent variables that represent the *earliest* data point we have
 in our database for that subject. This is due to the initial aggregation
-of the data during model training (as discussed [above]()). In practice,
+of the data during model training (as discussed
+[above](#longitudinal-history--heterogeneity-in-the-data)). In practice,
 this means that all independent variables which are *random* (i.e, a
 measurement that should change over time, such as *debt coverage ratio*
 or *credit score*) – as opposed to *fixed* (e.g., *industry*, *state /
