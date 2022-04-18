@@ -1,6 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+![](www/ka_logo.jpg)
+
 # Dynamic Credit Risk Modeling
 
 <!-- badges: start -->
@@ -11,14 +13,19 @@ robust credit risk models. Ideally, this repository will include
 detailed documentation, resources, and examples (in `R`) related to
 building such models.
 
-## Purpose
+## The Current State of Credit Risk Models
 
 There are many shortcomings with current approaches to modeling credit
 risk using traditional methods (e.g., logistic regression), particularly
-as it fits into the lending decision itself. Some of these shortcomings
-include dealing with heterogeneity,
+as it fits into the lending decision itself. More specifically, these
+methods lack the ability to:
 
-#### Longitudinal History & Heterogeneity in Training Data
+-   handle heterogeneity
+-   incorporate longitudinal history
+-   forecast risk over time
+-   dynamically update risk estimates
+
+### Longitudinal History & Heterogeneity in the Data
 
 Traditional frequentist statistical modeling approaches (logistic
 regression, linear regression, etc.) and machine learning algorithms
@@ -42,7 +49,7 @@ additional history about a *subject* when training a credit decision
 model, particularly models that are dependent on **default** as the
 outcome variable.
 
-#### Risk Over Time
+### Forecasting Risk Over Time
 
 Another shortcoming of approaches like logistic regression is that the
 model output does not vary over a time horizon. This is unfortunate,
@@ -57,12 +64,58 @@ predictions. Such risk should be priced according to the level of
 uncertainty, and models that cannot estimate probability *over a
 forward-looking time horizon* make it impossible to do so.
 
-#### Aggregated Loss Curves
+### Making Risk Estimates Dynamic
+
+When using “traditional” modeling methods, we are often limited to using
+independent variables that represent the *earliest* data point we have
+in our database for that subject. This is due to the initial aggregation
+of the data during model training (as discussed [above]()). In practice,
+this means that all independent variables which are *random* (i.e, a
+measurement that should change over time, such as *debt coverage ratio*
+or *credit score*) – as opposed to *fixed* (e.g., *industry*, *state /
+country*, etc.) – end up representing that measurement at loan
+origination. Further, because these independent variables are
+origination-specific, the predictions for a single subject will be
+*static*; we do not have the ability to update our prediction for the
+subject, even as we receive new data about that subject over time.
+Ideally, we would like to be able to continuously, dynamically update
+our estimated risk for a single subject every time we receive new data
+(e.g., an updated *credit score*) about that subject.
+
+## Approaches for Building Better Credit Risk Models
+
+### Aggregated Loss Curves
 
 Though the goal is typically to be able to build models that score
 individual observations at the *subject*-level, sometimes it is not
 possible to do so due to the available data or nature of the dependent
 variable (e.g., the thing we are trying to predict). In this case,
 taking a more aggregated approach can be the most appropriate course of
-action. We suggest that building **loss curves** (perhaps segmented by
-*product* or *industry*) is one best-practice approach.
+action. We suggest that building **loss curves** segmented by *product*
+or *industry*, for example, is one best-practice approach.
+
+<details>
+<summary>
+Resources
+</summary>
+
+-   <https://mc-stan.org/users/documentation/case-studies/losscurves_casestudy.html>
+
+</details>
+
+### Hierarchical Models
+
+### Survival Models
+
+#### Hierarchical Survival Models
+
+### Joint Models
+
+<details>
+<summary>
+Resources
+</summary>
+
+-   <https://cran.r-project.org/web/packages/rstanarm/vignettes/jm.html>
+
+</details>
