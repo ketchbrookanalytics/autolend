@@ -100,13 +100,24 @@ or *industry*, for example, is one best-practice approach.
 Resources
 </summary>
 
--   <https://mc-stan.org/users/documentation/case-studies/losscurves_casestudy.html>
+-   [*Modelling Loss Curves in Insurance with
+    RStan*](https://mc-stan.org/users/documentation/case-studies/losscurves_casestudy.html)
 
 </details>
 
 ### Hierarchical Models
 
 ### Survival Models
+
+<details>
+<summary>
+Resources
+</summary>
+
+-   [*Bayesian Survival Analysis Using the rstanarm R
+    Package*](https://arxiv.org/pdf/2002.09633.pdf)
+
+</details>
 
 #### Hierarchical Survival Models
 
@@ -117,6 +128,8 @@ Resources
 Resources
 </summary>
 
--   <https://cran.r-project.org/web/packages/rstanarm/vignettes/jm.html>
+-   [*Estimating Joint Models for Longitudinal and Time-to-Event Data
+    with
+    rstanarm*](https://cran.r-project.org/web/packages/rstanarm/vignettes/jm.html)
 
 </details>
