@@ -28,10 +28,10 @@ claims <- ppauto |>
     loss_ratio
   )
 
-Note: 'loss ratio' is the cumulative total dollars paid out over time (i.e.,
-over multiple years) against accident claims from a given 'base' year (year
-the accident occurred), divided by the total amount of premiums collected in
-the base year
+# Note: 'loss ratio' is the cumulative total dollars paid out over time (i.e.,
+# over multiple years) against accident claims from a given 'base' year (year
+# the accident occurred), divided by the total amount of premiums collected in
+# the base year
 
 
 # Plot the lagged loss ratios for 4 carriers

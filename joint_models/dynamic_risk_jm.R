@@ -1,6 +1,6 @@
 library(rstanarm)
 library(tibble)
-library(data.table)
+# library(data.table)
 
 pbcLong |> 
   tibble::tibble()
